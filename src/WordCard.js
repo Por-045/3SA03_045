@@ -12,7 +12,8 @@ const prepareStateFromWord = given_word => {
         chars,
         attempt: 1,
         guess: '',
-        completed: false
+        completed: false,
+        fail: false
     }
 }
 
@@ -28,20 +29,29 @@ export default function WordCard(props){
         if(guess.length == state.word.length){
             if(guess == state.word){
                 console.log('yeah!')
-                setState({...state, completed: true})
+                setState({...state, completed: true, fail: false})
             }else{
                 console.log('reset, next attempt')
-                setState({...state, guess: '', attempt: state.attempt +1})
+                setState({...state, guess: '', attempt: state.attempt +1, fail:true})
             }
         }
     }
+
+    const win = state.completed ? 'You Win!!!!!!!' : ''
+    const again = state.fail ? 'Try again' : ''
+
     return(
         <div>
-            { 
-                state.chars.map((c, i) => 
-                    <CharacterCard value={c} key={i} activationHandler={activationHandler} attempt={state.attempt}/>
-                )
-            }
+            <div className="text">{'โปรดกดปุ่มโดยเรียงลำดับเพื่อให้ได้คำต่อไปนี้ = ' + props.value}</div>
+            <div>
+                { 
+                    state.chars.map((c, i) => 
+                        <CharacterCard value={c} key={i} activationHandler={activationHandler} attempt={state.attempt}/>
+                    )
+                }
+            </div>
+            <div className="text">{win}</div>
+            <div className="text">{again}</div>
         </div>
     );
 }

@@ -6,9 +6,22 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   margin: 1em;
   user-select: none;
+  background: skyblue;
+ }
+ 
+.activeCard {
+  color: red;
+  background: pink;
  }
 
- .activeCard {
-   color: red;
-   background: pink;
- }
+body {
+  background: lightgreen;
+}
+
+.App {
+  text-align: center;
+}
+
+.text {
+  font-size: 25px;
+}
